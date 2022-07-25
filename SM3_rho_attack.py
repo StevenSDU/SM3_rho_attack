@@ -4,8 +4,6 @@ import math
 import time
 from collections import Counter
 
-length=32
-
 #分别对应初始的八个偏移量
 IV = [0x7380166F, 0x4914B2B9, 0x172442D7, 0xDA8A0600, 0xA96F30BC, 0x163138AA, 0xE38DEE4D, 0xB0FB0E4E]
 T = [0x79cc4519, 0x7a879d8a]
@@ -115,27 +113,25 @@ def SM3(message):
         V.append(CF(V,message,i))
     return V[n]
 
-
-def Rho_Attack(n):
-    list_r_value = []
-    list_r = random.randint(0, pow(2, 64))
+def Rho_Attack():
+    cipher = []
     for i in range(pow(2,32)):
+        list_r = random.randint(0, pow(2, 64))
         m = padding(str(list_r))
-        V=SM3(Input(m))
-        aa=""
+        V = SM3(Input(m))
+        text=""
+        #SM3函数返回一个数组V，V数组中的每个元素为16进制字符串。
         for x in V:
-            aa += hex(x)[2:]
+            text += hex(x)[2:]
         #这里表示字节数换算，例如n=8，表示前8bit碰撞，即前两字节碰撞（0和1字节）
-        j=aa[:(n/4)-1]
-        if(j in list_r_value):
+        j=text[:5]
+        if(j in cipher):
             print("攻击成功！")
             break
         else:
-            list_r_value.append(j)
-    print("攻击失败！")
+            cipher.append(j)
 
-if __name__ =="main":
-    t = time.time()
-    #计算前8bit碰撞所需时间
-    Rho_Attack(8)
-    print("攻击时间为：",time.time() - t)
+t = time.time()
+#计算碰撞所需时间
+Rho_Attack()
+print("前24bit攻击时间为：",time.time() - t)
