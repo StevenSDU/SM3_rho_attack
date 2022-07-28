@@ -15,7 +15,6 @@
 
 （1）这里我们只选取了8bit的rho attack，得到的运行截图如下所示：非常快的时间内即得到了一个碰撞，大约在0.099s左右的时间，说明8bit攻击速度还是相当迅速的。
 
-（2）接下来我尝试了16bit、24bit的攻击，相对来说比较耗时，但是攻击成功的时间也并不慢，结果也呈现在下方。
 
 3、代码注释：
 
@@ -29,10 +28,4 @@
 
 ![image](https://user-images.githubusercontent.com/108848022/180707034-e3500a6f-884d-455e-a99b-ab729b9e2594.png)
 
-（2）前16bit攻击：
 
-![image](https://user-images.githubusercontent.com/108848022/180707057-aeea6457-f29c-4267-8dcd-444a8023d3e2.png)
-
-（3）前24bit攻击：
-
-![image](https://user-images.githubusercontent.com/108848022/180707079-a4ad538f-b8d1-4481-9d6c-13f2a5f94c25.png)
